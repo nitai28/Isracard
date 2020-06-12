@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 const App = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator initialRouteName={'Home'} headerMode={false}>
                 <Stack.Screen name="Home" component={HomeScreen}/>
                 <Stack.Screen name="Movies" component={Movies}/>
             </Stack.Navigator>
