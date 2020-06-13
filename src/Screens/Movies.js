@@ -14,7 +14,7 @@ const Movies = ({navigation, popularMoviesList}) => {
                     data={popularMoviesList}
                     keyExtractor={item => item.title}
                     renderItem={({item}) => (
-                        <TouchableOpacity onPress={() => navigation.navigate('movie', {movie: item})} style={{
+                        <TouchableOpacity onPress={() => navigation.navigate('Movie', {movie: item})} style={{
                             width: '100%',
                             backgroundColor: '#edf2f4',
                             height: 50,

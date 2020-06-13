@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const ImageBaseURL = 'https://image.tmdb.org/t/p/w185/';
-let api_key = '63fac5f00ea4f7e4cd8116557e149e53';
 
 export const setUserDetails = (name, imgSrc, loginFrom) => {
     return (dispatch) => {

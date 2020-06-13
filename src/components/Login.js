@@ -1,20 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {AccessToken, GraphRequest, GraphRequestManager, LoginButton} from 'react-native-fbsdk';
 import {logout, setUserDetails} from '../store/actions/userAction';
 
 const Login = ({setUserDetails, logOut}) => {
+
+    useEffect(() => {
+        (async () => {
+            const data = AccessToken.getCurrentAccessToken();
+            console.log(333,data);
+        })();
+    }, []);
+
+
     return (
         <View>
             <LoginButton
                 onLoginFinished={
                     (error, result) => {
                         if (error) {
-                            console.log('login has error: ' + result.error);
+                            console.log('login has error:');
+                            // console.log('login has error: ' + result.error);
                         } else if (result.isCancelled) {
                             console.log('login is cancelled.');
+
                         } else {
+                            console.log(result, 23233223);
                             AccessToken.getCurrentAccessToken().then(
                                 (data) => {
                                     const infoRequest = new GraphRequest(
@@ -31,8 +43,6 @@ const Login = ({setUserDetails, logOut}) => {
                                             if (err) {
                                                 console.log(23423);
                                             } else {
-                                                console.log(res);
-                                                console.log(res.name, res.picture.data.url);
                                                 setUserDetails(res.name, res.picture.data.url, 'facebook');
                                             }
                                         },
@@ -43,7 +53,10 @@ const Login = ({setUserDetails, logOut}) => {
                         }
                     }
                 }
-                onLogoutFinished={() => logOut()}/>
+                onLogoutFinished={() => {
+                    console.log('logOut');
+                    logOut();
+                }}/>
         </View>
     );
 };
