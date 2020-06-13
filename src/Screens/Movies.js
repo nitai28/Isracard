@@ -1,15 +1,14 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, FlatList, ActivityIndicator, TouchableOpacity, SafeAreaView} from 'react-native';
+import React from 'react';
+import {View, Text, FlatList, ActivityIndicator, TouchableOpacity, SafeAreaView} from 'react-native';
 import {connect} from 'react-redux';
+import Header from '../components/Header';
 
 
 const Movies = ({navigation, popularMoviesList}) => {
     if (popularMoviesList) {
         return (
             <SafeAreaView style={{flex: 1}}>
-                <View style={{height: 80, width: '100%', backgroundColor: '#264653', justifyContent: 'center'}}>
-                    <Text style={{color: '#edf2f4', textAlign: 'center', fontSize: 28}}>Movies List</Text>
-                </View>
+                <Header callback={() => navigation.goBack()} title={'Isracard Movies'}/>
                 <FlatList
                     data={popularMoviesList}
                     keyExtractor={item => item.title}

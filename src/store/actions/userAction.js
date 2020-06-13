@@ -26,3 +26,17 @@ export const logout = () => {
         dispatch({type: 'LOGOUT'});
     };
 };
+
+export const updateFavoriteMovies = (movie) => {
+    return (dispatch, getState) => {
+        let favoriteMovies= [...getState().user.favoriteMovies];
+        let updatedFavoriteMovies = [];
+        let index = favoriteMovies.findIndex(movieObj => movie.title === movieObj.title);
+        if (index === -1) {
+            updatedFavoriteMovies = [...favoriteMovies, movie];
+        } else {
+            updatedFavoriteMovies = favoriteMovies.filter(movieObj => movie.title !== movieObj.title);
+        }
+        dispatch({type: 'UPDATE_FAVORITE_LIST', payload: updatedFavoriteMovies});
+    };
+};

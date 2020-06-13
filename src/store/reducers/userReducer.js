@@ -18,10 +18,9 @@ const userReducer = (state = initState, action) => {
             };
 
         case 'UPDATE_FAVORITE_LIST':
-            const {favoriteMovies} = action.payload;
             return {
                 ...state,
-                favoriteMovies,
+                favoriteMovies: action.payload,
             };
 
         case 'SET_MOVIES':

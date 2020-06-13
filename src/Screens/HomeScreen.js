@@ -15,7 +15,7 @@ const HomeScreen = ({navigation, fetchMoviesList, name = '', profileImage = ''})
     return (
         <View style={{flex: 1, flexDirection: 'column'}}>
             <Image style={{width: 100, height: 100}} source={require('../assets/appLogo.png')}/>
-            <Text>Welcome{name ? ' ' + name + ' ' : ''}to Isra Movies</Text>
+            <Text>Welcome{name ? ' ' + name + ' ' : ''}to Isracard Movies</Text>
             {!!profileImage ?
                 <View>
                     <Image style={styles.avatar} source={{uri: profileImage}}/>
