@@ -7,11 +7,33 @@ import {logout, setUserDetails} from '../store/actions/userAction';
 const Login = ({setUserDetails, logOut}) => {
 
     useEffect(() => {
-        (async () => {
-            const data = AccessToken.getCurrentAccessToken();
-            console.log(333,data);
-        })();
+        setData();
     }, []);
+
+    const setData = () => {
+        AccessToken.getCurrentAccessToken().then(
+            (data) => {
+                const infoRequest = new GraphRequest(
+                    '/me',
+                    {
+                        accessToken: data.accessToken,
+                        parameters: {
+                            fields: {
+                                string: 'picture.type(large) ,name',
+                            },
+                        },
+                    },
+                    (err, res) => {
+                        if (err) {
+                            console.log(23423);
+                        } else {
+                            setUserDetails(res.name, res.picture.data.url, 'facebook');
+                        }
+                    },
+                );
+                new GraphRequestManager().addRequest(infoRequest).start();
+            });
+    };
 
 
     return (
@@ -20,36 +42,11 @@ const Login = ({setUserDetails, logOut}) => {
                 onLoginFinished={
                     (error, result) => {
                         if (error) {
-                            console.log('login has error:');
-                            // console.log('login has error: ' + result.error);
+                            console.log('login has error:', error);
                         } else if (result.isCancelled) {
                             console.log('login is cancelled.');
-
                         } else {
-                            console.log(result, 23233223);
-                            AccessToken.getCurrentAccessToken().then(
-                                (data) => {
-                                    const infoRequest = new GraphRequest(
-                                        '/me',
-                                        {
-                                            accessToken: data.accessToken,
-                                            parameters: {
-                                                fields: {
-                                                    string: 'picture.type(large) ,name',
-                                                },
-                                            },
-                                        },
-                                        (err, res) => {
-                                            if (err) {
-                                                console.log(23423);
-                                            } else {
-                                                setUserDetails(res.name, res.picture.data.url, 'facebook');
-                                            }
-                                        },
-                                    );
-                                    new GraphRequestManager().addRequest(infoRequest).start();
-                                },
-                            );
+                            setData();
                         }
                     }
                 }
