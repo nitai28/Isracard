@@ -32,7 +32,9 @@ const Login = ({setUserDetails, logOut}) => {
                     },
                 );
                 new GraphRequestManager().addRequest(infoRequest).start();
-            });
+            }).catch(e => {
+            console.log(e);
+        });
     };
 
 
@@ -41,19 +43,18 @@ const Login = ({setUserDetails, logOut}) => {
             <LoginButton
                 onLoginFinished={
                     (error, result) => {
+                        console.log(6567567);
                         if (error) {
                             console.log('login has error:', error);
                         } else if (result.isCancelled) {
                             console.log('login is cancelled.');
                         } else {
+                            console.log(453345345);
                             setData();
                         }
                     }
                 }
-                onLogoutFinished={() => {
-                    console.log('logOut');
-                    logOut();
-                }}/>
+                onLogoutFinished={() => logOut()}/>
         </View>
     );
 };

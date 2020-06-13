@@ -13,22 +13,33 @@ const HomeScreen = ({navigation, fetchMoviesList, name = '', profileImage = ''})
 
 
     return (
-        <View style={{flex: 1, flexDirection: 'column'}}>
-            <Image style={{width: 100, height: 100}} source={require('../assets/appLogo.png')}/>
-            <Text>Welcome{name ? ' ' + name + ' ' : ''}to Isracard Movies</Text>
+        <View style={{flex: 1, flexDirection: 'column', alignItems: 'center', backgroundColor: 'white'}}>
+            <Image style={{width: 150, height: 150, marginVertical: 15}} source={require('../assets/appLogo1.png')}/>
+            <Text style={styles.welcome}>Welcome {name ? name : 'Stranger'} </Text>
+            <Image style={styles.avatar}
+                   source={profileImage ? {uri: profileImage} : require('../assets/avatar.png')}/>
             {!!profileImage ?
-                <View>
-                    <Image style={styles.avatar} source={{uri: profileImage}}/>
-                    <TouchableOpacity onPress={() => {
+                <TouchableOpacity
+                    onPress={() => {
                         fetchMoviesList();
                         navigation.navigate('Movies');
                     }}
-                                      style={styles.loadMoviesBtn}>
-                        <Text style={{fontSize: 18, color: 'white'}}>Load movies</Text>
-                    </TouchableOpacity>
-                </View>
-                : null}
-            <View style={{justifyContent: 'flex-end', alignSelf: 'center'}}>
+                    style={styles.loadMoviesBtn}>
+                    <Text style={{fontSize: 18, color: 'white'}}>Load movies</Text>
+                </TouchableOpacity> : <Text style={{
+                    color: 'gray',
+                    textAlign: 'center',
+                    fontSize:15,
+                    letterSpacing:1.1
+
+                }}>{'Please log in to continue \n to the awesomeness'} </Text>}
+
+            <View style={{
+                flex: 1,
+                justifyContent: 'flex-end',
+                alignItems: 'center',
+                marginBottom: 36,
+            }}>
                 <Login/>
             </View>
         </View>
@@ -37,9 +48,9 @@ const HomeScreen = ({navigation, fetchMoviesList, name = '', profileImage = ''})
 
 const styles = StyleSheet.create({
     avatar: {
-        width: 120,
-        height: 120,
-        borderRadius: 60,
+        width: 150,
+        height: 150,
+        borderRadius: 75,
         backgroundColor: 'transparent',
         borderColor: 'black',
         borderWidth: 1,
@@ -47,17 +58,23 @@ const styles = StyleSheet.create({
 
     },
     loadMoviesBtn: {
+        marginTop: 30,
         height: 45,
-        width: 150,
+        width: '60%',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'black',
-        borderRadius: 30,
+        borderRadius: 15,
         elevation: 13,
         borderColor: 'white',
         borderWidth: 2,
-        alignSelf: 'center',
     },
+    welcome: {
+        fontSize: 29,
+        fontWeight: 'bold',
+        marginBottom: 35,
+    },
+
 });
 
 const mapStateToProps = state => {
