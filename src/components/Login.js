@@ -2,9 +2,9 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {AccessToken, GraphRequest, GraphRequestManager, LoginButton} from 'react-native-fbsdk';
-import {setUserDetails} from '../store/actions/userAction';
+import {logout, setUserDetails} from '../store/actions/userAction';
 
-const Login = ({setUserDetails}) => {
+const Login = ({setUserDetails, logOut}) => {
     return (
         <View>
             <LoginButton
@@ -29,10 +29,11 @@ const Login = ({setUserDetails}) => {
                                         },
                                         (err, res) => {
                                             if (err) {
-                                                console.log(res);
+                                                console.log(23423);
                                             } else {
+                                                console.log(res);
                                                 console.log(res.name, res.picture.data.url);
-                                                setUserDetails(res.name, res.picture.data.url);
+                                                setUserDetails(res.name, res.picture.data.url, 'facebook');
                                             }
                                         },
                                     );
@@ -42,7 +43,7 @@ const Login = ({setUserDetails}) => {
                         }
                     }
                 }
-                onLogoutFinished={() => console.log('logout.')}/>
+                onLogoutFinished={() => logOut()}/>
         </View>
     );
 };
@@ -51,7 +52,8 @@ const styles = StyleSheet.create({});
 
 const mapDispatchToProps = dispatch => {
     return {
-        setUserDetails: (name, imgSrc) => dispatch(setUserDetails(name, imgSrc)),
+        setUserDetails: (name, imgSrc, loginFrom) => dispatch(setUserDetails(name, imgSrc, loginFrom)),
+        logOut: () => dispatch(logout()),
     };
 };
 
