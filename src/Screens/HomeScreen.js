@@ -13,7 +13,7 @@ const HomeScreen = ({navigation, fetchMoviesList, name = '', profileImage = ''})
 
 
     return (
-        <View style={{flex: 1, flexDirection: 'column', alignItems: 'center', backgroundColor: 'white'}}>
+        <View style={styles.container}>
             <Image style={{width: 150, height: 150, marginVertical: 15}} source={require('../assets/appLogo1.png')}/>
             <Text style={styles.welcome}>Welcome {name ? name : 'Stranger'} </Text>
             <Image style={styles.avatar}
@@ -47,6 +47,8 @@ const HomeScreen = ({navigation, fetchMoviesList, name = '', profileImage = ''})
 };
 
 const styles = StyleSheet.create({
+    container: {flex: 1, flexDirection: 'column', alignItems: 'center', backgroundColor: 'white'},
+
     avatar: {
         width: 150,
         height: 150,
