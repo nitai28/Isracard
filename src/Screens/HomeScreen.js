@@ -8,7 +8,7 @@ import {fetchMovies} from '../store/actions/userAction';
 const HomeScreen = ({navigation, fetchMoviesList, name = '', profileImage = ''}) => {
 
     useEffect(() => {
-        console.log(profileImage);
+        console.log(4646,profileImage);
     }, [name, profileImage]);
 
 

@@ -15,11 +15,11 @@ const MovieScreen = ({navigation, route}) => {
         return (
             <SafeAreaView style={styles.movieContainer}>
                 <View style={styles.movieCard}>
-                    <Image resizeMethod={'scale'} style={styles.movieImage}
+                    <Image resizeMode={'center'} style={styles.movieImage}
                            source={{uri: `${config.ImageBaseURL}${movie.poster_path}`}}/>
-                    <Text>{movie.title}</Text>
-                    <Text>{'Rating :' + movie.vote_average}</Text>
-                    <Text style={{paddingHorizontal:'6%'}}>{movie.overview}</Text>
+                    <Text style={styles.title}>{movie.title}</Text>
+                    <Text style={styles.rating}>{'Rating :' + movie.vote_average}/10</Text>
+                    <Text style={styles.movieOverview}>{movie.overview}</Text>
                 </View>
             </SafeAreaView>
         );
@@ -33,23 +33,47 @@ const MovieScreen = ({navigation, route}) => {
 const styles = StyleSheet.create({
     movieContainer: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#457b9d',
+        // backgroundColor: '#7d8597',
+        backgroundColor: 'white',
     },
+
     movieCard: {
-        width: '80%',
-        height: '80%',
-        backgroundColor: '#a8dadc',
-        elevation: 8,
-        borderWidth: 3,
-        borderColor: 'white',
+        width: '100%',
+        // backgroundColor: '#cad2c5',
+        // elevation: 8,
+        // borderWidth: 1.5,
+        // borderColor: 'black',
+    },
+    title: {
+        color: 'rgb(11,11,11)',
+        fontFamily: 'sans-serif-light',
+        fontWeight: '700',
+        fontSize: 28,
+        textAlign: 'center',
+        marginVertical: '1.5%',
+    },
+    rating:{
+        paddingHorizontal: '8%',
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'rgb(11,11,11)',
+        fontFamily: 'sans-serif-light',
+    },
+
+    movieOverview: {
+        paddingHorizontal: '8%',
+        fontSize: 16,
+        marginVertical: '3%',
+        fontWeight: '600',
+        color: 'rgb(11,11,11)',
+        fontFamily: 'sans-serif-light',
     },
 
     movieImage: {
         width: '100%',
-        height: '40%',
-        borderWidth: 3,
+        height: 250,
+        borderWidth: 2,
         borderColor: 'white',
     },
 });
