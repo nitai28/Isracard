@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Login from '../components/Login';
 import {connect} from 'react-redux';
@@ -6,11 +6,6 @@ import {fetchMovies} from '../store/actions/userAction';
 
 
 const HomeScreen = ({navigation, fetchMoviesList, name = '', profileImage = ''}) => {
-
-    useEffect(() => {
-        console.log(4646,profileImage);
-    }, [name, profileImage]);
-
 
     return (
         <View style={styles.container}>

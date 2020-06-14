@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {connect} from 'react-redux';
 import {AccessToken, GraphRequest, GraphRequestManager, LoginButton} from 'react-native-fbsdk';
 import {logout, setUserDetails} from '../store/actions/userAction';
@@ -25,9 +25,8 @@ const Login = ({setUserDetails, logOut}) => {
                     },
                     (err, res) => {
                         if (err) {
-                            console.log(23423);
                         } else {
-                            setUserDetails(res.name, res.picture.data.url, 'facebook');
+                            setUserDetails(res.name, res.picture.data.url);
                         }
                     },
                 );
@@ -43,13 +42,11 @@ const Login = ({setUserDetails, logOut}) => {
             <LoginButton
                 onLoginFinished={
                     (error, result) => {
-                        console.log(6567567);
                         if (error) {
                             console.log('login has error:', error);
                         } else if (result.isCancelled) {
                             console.log('login is cancelled.');
                         } else {
-                            console.log(453345345);
                             setData();
                         }
                     }
@@ -59,11 +56,9 @@ const Login = ({setUserDetails, logOut}) => {
     );
 };
 
-const styles = StyleSheet.create({});
-
 const mapDispatchToProps = dispatch => {
     return {
-        setUserDetails: (name, imgSrc, loginFrom) => dispatch(setUserDetails(name, imgSrc, loginFrom)),
+        setUserDetails: (name, imgSrc) => dispatch(setUserDetails(name, imgSrc)),
         logOut: () => dispatch(logout()),
     };
 };

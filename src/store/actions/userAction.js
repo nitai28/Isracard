@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 
-export const setUserDetails = (name, imgSrc, loginFrom) => {
+export const setUserDetails = (name, imgSrc) => {
     return (dispatch) => {
-        dispatch({type: 'GET_USERS_SUCCESS', payload: {name, profileImage: imgSrc, loginFrom}});
+        dispatch({type: 'GET_USERS_SUCCESS', payload: {name, profileImage: imgSrc}});
     };
 };
 

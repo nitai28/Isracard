@@ -2,19 +2,17 @@ const initState = {
     name: '',
     profileImage: '',
     favoriteMovies: [],
-    loginFrom: '',
     popularMoviesList: [],
 };
 
 const userReducer = (state = initState, action) => {
     switch (action.type) {
         case 'GET_USERS_SUCCESS':
-            const {name, profileImage, loginFrom} = action.payload;
+            const {name, profileImage} = action.payload;
             return {
                 ...state,
                 name,
                 profileImage,
-                loginFrom,
             };
 
         case 'UPDATE_FAVORITE_LIST':
